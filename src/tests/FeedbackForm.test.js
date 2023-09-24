@@ -1,5 +1,6 @@
 import {fireEvent, logRoles, render, screen} from "@testing-library/react";
 import {FeedbackForm} from "../components/FeedbackForm";
+import userEvent from '@testing-library/user-event'
 
 describe("Feedback form tests", () => {
     test("on load condition of FeedbackForm", () => {
@@ -21,7 +22,7 @@ describe("Feedback form tests", () => {
 
     test("button is only enabled if review text is supplied & checkbox is checked", () => {
         render(<FeedbackForm/>);
-        const feedbackTextBox = screen.getAllByPlaceholderText("Enter your feedback here");
+        const feedbackTextBox = screen.getByPlaceholderText("Enter your feedback here");
         const agreementCheckBox = screen.getByLabelText
         ("I accept the Terms and Conditions", {exact: false});
         const  btn = screen.getByRole("button",{name:"Add feedback"});
@@ -29,6 +30,7 @@ describe("Feedback form tests", () => {
         expect(btn).toBeDisabled();
         
         fireEvent.change(feedbackTextBox, {target:{value:"Sauce is too sweet"}});
+       // userEvent.type(feedbackTextBox,"Sauce is too sweet");
         expect(btn).toBeDisabled();
         fireEvent.click(agreementCheckBox);
         expect(btn).toBeEnabled();
