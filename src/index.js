@@ -3,16 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {FeedbackForm} from "./components/FeedbackForm";
+import {FeedBack} from "./components/FeedBack";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <div className="container d-flex-column">
             <App/>
-            <FeedbackForm/>
+            <FeedBack/>
         </div>
-      
+
     </React.StrictMode>
 );
 
