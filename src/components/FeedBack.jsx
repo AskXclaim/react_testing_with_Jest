@@ -11,7 +11,7 @@ export const FeedBack = () => {
             return;
         }
 
-        const lastId = feedBacks[feedBacks?.length]?.id ?? 1;
+        const lastId = feedBacks[feedBacks?.length - 1]?.id ?? 1;
 
         setFeedBacks([...feedBacks, {id: lastId + 1, text: text.trim()}]);
 
@@ -22,7 +22,7 @@ export const FeedBack = () => {
             <div className="m-2">
                 <FeedbackForm handleSubmitBtn={handleSubmitBtn}/>
             </div>
-            <div className="m-2" style={{minWidth:"310px"}}>
+            <div className="m-2" style={{minWidth: "310px"}}>
                 <FeedBackOverview feedBacks={feedBacks}/>
             </div>
 
