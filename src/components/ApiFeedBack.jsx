@@ -1,20 +1,29 @@
 import {FeedbackForm} from "./FeedbackForm";
 import {FeedBackOverview} from "./FeedBackOverview";
-import {useState} from "react";
+import {useDebugValue, useState} from "react";
 
-export const FeedBack = () => {
+export const ApiFeedBack = () => {
     const [feedBacks, setFeedBacks] = useState([]);
-    const handleSubmitBtn = (text) => {
+    const handleSubmitBtn = async (text) => {
         if (text?.trim().length === 0) {
             //log error
             alert("Please supply a review to leave");
             return;
         }
 
-        const lastId =
-            feedBacks.length === 0 ? 0 : feedBacks[feedBacks.length - 1].id;
+        const lastId = feedBacks.length === 0 ? 0 : feedBacks[feedBacks.length - 1].id;
 
-        setFeedBacks((prev)=>[...prev, {id: lastId + 1, text: text.trim()}]);
+        const response = await fetch("http://api.backend.server/savefeedback", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({id: lastId + 1, text: text.trim()})
+        });
+
+        const newSavedFeedBack = await response.json();
+
+        setFeedBacks((prev)=>[...prev, newSavedFeedBack]);
 
     };
     return (

@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {FeedBack} from "./components/FeedBack";
+// import {ApiFeedBack} from "./components/ApiFeedBack";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -11,6 +12,7 @@ root.render(
         <div className="container d-flex-column">
             <App/>
             <FeedBack/>
+            {/*<ApiFeedBack/>*/}
         </div>
 
     </React.StrictMode>
